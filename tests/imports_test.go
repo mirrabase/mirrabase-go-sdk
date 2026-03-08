@@ -1,0 +1,41 @@
+package tests
+
+import (
+	"testing"
+	"time"
+
+	"github.com/mirrabase/mirrabase-go-sdk"
+	"github.com/mirrabase/mirrabase-go-sdk/apikeys"
+	"github.com/mirrabase/mirrabase-go-sdk/auth"
+	"github.com/mirrabase/mirrabase-go-sdk/database"
+	"github.com/mirrabase/mirrabase-go-sdk/invitations"
+	"github.com/mirrabase/mirrabase-go-sdk/members"
+	"github.com/mirrabase/mirrabase-go-sdk/permissions"
+	"github.com/mirrabase/mirrabase-go-sdk/projects"
+	"github.com/mirrabase/mirrabase-go-sdk/rag"
+	"github.com/mirrabase/mirrabase-go-sdk/settings"
+	"github.com/mirrabase/mirrabase-go-sdk/storage"
+)
+
+func TestImportsAndConstructors(t *testing.T) {
+	_ = auth.New()
+	_ = projects.New()
+	_ = members.New()
+	_ = invitations.New()
+	_ = permissions.New()
+	_ = database.New()
+	_ = storage.New()
+	_ = rag.New()
+	_ = apikeys.New()
+	_ = settings.New()
+
+	c := mirrabase.NewClient(mirrabase.ClientConfig{
+		BaseURL: "http://localhost:8000",
+		APIKey:  "mirrabase-dev-public-key",
+		Timeout: 10 * time.Second,
+	})
+
+	if c.Auth == nil || c.Projects == nil || c.DB == nil {
+		t.Fatal("client services should be initialized")
+	}
+}

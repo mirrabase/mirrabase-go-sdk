@@ -1,14 +1,14 @@
 # Projects Service
 
-Namespace: `mirrabase.projects`
+Namespace: `client.Projects`
 
 ## Methods
-- `list()`
-- `create(payload: dict)`
-- `get(project_id: str)`
-- `update(project_id: str, payload: dict)`
-- `remove(project_id: str)`
-- `set_active(project_id: str)`
+- `List()`
+- `Create(payload map[string]any)`
+- `Get(projectID string)`
+- `Update(projectID string, payload map[string]any)`
+- `Remove(projectID string)`
+- `SetActive(projectID string)`
 
 ## Endpoints
 - `GET /v1/projects`
@@ -18,8 +18,9 @@ Namespace: `mirrabase.projects`
 - `DELETE /v1/projects/:project_id`
 
 ## Example
-```python
-projects = mirrabase.projects.list()
-project = mirrabase.projects.create({"name": "My Project"})
-mirrabase.projects.set_active(project["id"])
+```go
+projects, _ := client.Projects.List()
+project, _ := client.Projects.Create(map[string]any{"name": "My Project"})
+client.Projects.SetActive(project["id"].(string))
+_ = projects
 ```

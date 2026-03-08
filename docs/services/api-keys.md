@@ -1,12 +1,12 @@
 # API Keys Service
 
-Namespace: `mirrabase.api_keys`
+Namespace: `client.APIKeys`
 
 ## Methods
-- `list(project_id: str | None = None)`
-- `create(payload: dict, project_id: str | None = None)`
-- `revoke(key_id: str, project_id: str | None = None)`
-- `rate_limits(project_id: str | None = None)`
+- `List(projectID string)`
+- `Create(payload map[string]any, projectID string)`
+- `Revoke(keyID, projectID string)`
+- `RateLimits(projectID string)`
 
 ## Endpoints
 - `GET /v1/api-keys`
@@ -15,7 +15,8 @@ Namespace: `mirrabase.api_keys`
 - `GET /v1/api-keys/rate-limits`
 
 ## Example
-```python
-key = mirrabase.api_keys.create({"name": "frontend", "key_type": "anon"})
-mirrabase.api_keys.rate_limits()
+```go
+key, _ := client.APIKeys.Create(map[string]any{"name": "frontend", "key_type": "anon"}, "")
+_, _ = client.APIKeys.RateLimits("")
+_ = key
 ```

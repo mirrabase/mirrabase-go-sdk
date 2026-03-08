@@ -1,13 +1,13 @@
 # Settings Service
 
-Namespace: `mirrabase.settings`
+Namespace: `client.Settings`
 
 ## Methods
-- `get_general(project_id: str | None = None)`
-- `update_general(payload: dict, project_id: str | None = None)`
-- `list_domains(project_id: str | None = None)`
-- `pause(project_id: str | None = None)`
-- `delete(project_id: str | None = None)`
+- `GetGeneral(projectID string)`
+- `UpdateGeneral(payload map[string]any, projectID string)`
+- `ListDomains(projectID string)`
+- `Pause(projectID string)`
+- `Delete(projectID string)`
 
 ## Endpoints
 - `GET /v1/settings/general`
@@ -17,7 +17,8 @@ Namespace: `mirrabase.settings`
 - `DELETE /v1/settings/danger-zone/delete`
 
 ## Example
-```python
-settings = mirrabase.settings.get_general()
-mirrabase.settings.update_general({"app_name": "My App"})
+```go
+settings, _ := client.Settings.GetGeneral("")
+_, _ = client.Settings.UpdateGeneral(map[string]any{"app_name": "My App"}, "")
+_ = settings
 ```

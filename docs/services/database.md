@@ -1,20 +1,20 @@
 # Database Service
 
-Namespace: `mirrabase.db`
+Namespace: `client.DB`
 
 ## Management methods
-- `list_tables(project_id: str | None = None)`
-- `drop_table(name: str, project_id: str | None = None)`
-- `query(sql: str, project_id: str | None = None)`
-- `list_backups(project_id: str | None = None)`
-- `create_backup(project_id: str | None = None)`
+- `ListTables(projectID string)`
+- `DropTable(name, projectID string)`
+- `Query(sql, projectID string)`
+- `ListBackups(projectID string)`
+- `CreateBackup(projectID string)`
 
 ## Client CRUD builder
-- `from_table(table).select(project_id=None)`
-- `from_table(table).select_by_id(id, project_id=None)`
-- `from_table(table).insert(payload, project_id=None)`
-- `from_table(table).update(id, payload, project_id=None)`
-- `from_table(table).delete(id, project_id=None)`
+- `FromTable(table).Select(projectID)`
+- `FromTable(table).SelectByID(id, projectID)`
+- `FromTable(table).Insert(payload, projectID)`
+- `FromTable(table).Update(id, payload, projectID)`
+- `FromTable(table).Delete(id, projectID)`
 
 ## Endpoints
 - `GET /v1/database/tables`
@@ -29,7 +29,8 @@ Namespace: `mirrabase.db`
 - `DELETE /v1/client/db/:table/:id`
 
 ## Example
-```python
-mirrabase.db.query("select * from todos")
-rows = mirrabase.db.from_table("todos").select()
+```go
+_, _ = client.DB.Query("select * from todos", "")
+rows, _ := client.DB.FromTable("todos").Select("")
+_ = rows
 ```

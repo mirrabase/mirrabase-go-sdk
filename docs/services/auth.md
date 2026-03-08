@@ -1,18 +1,18 @@
 # Auth Service
 
-Namespace: `mirrabase.auth`
+Namespace: `client.Auth`
 
 ## Methods
-- `signup(payload: dict)`
-- `verify_email(payload: dict)`
-- `resend_confirmation(payload: dict)`
-- `login(payload: dict)`
-- `logout()`
-- `get_user()`
-- `login_and_set_session(payload: dict)`
-- `set_session(token: str)`
-- `clear_session()`
-- `get_session()`
+- `Signup(payload map[string]any)`
+- `VerifyEmail(payload map[string]any)`
+- `ResendConfirmation(payload map[string]any)`
+- `Login(payload map[string]any)`
+- `Logout()`
+- `GetUser()`
+- `LoginAndSetSession(payload map[string]any)`
+- `SetSession(token string)`
+- `ClearSession()`
+- `GetSession()`
 
 ## Endpoints
 - `POST /v1/client/auth/signup`
@@ -23,9 +23,10 @@ Namespace: `mirrabase.auth`
 - `GET /v1/client/auth/user`
 
 ## Example
-```python
-mirrabase.auth.signup({"email": email, "password": password})
-verify = mirrabase.auth.verify_email({"email": email, "token": token})
-mirrabase.auth.set_session(verify["session_token"])
-me = mirrabase.auth.get_user()
+```go
+_, _ = client.Auth.Signup(map[string]any{"email": email, "password": password})
+verify, _ := client.Auth.VerifyEmail(map[string]any{"email": email, "token": token})
+_ = client.Auth.SetSession(verify["session_token"].(string))
+me, _ := client.Auth.GetUser()
+_ = me
 ```

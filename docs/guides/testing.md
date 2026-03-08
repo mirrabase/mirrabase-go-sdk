@@ -2,17 +2,21 @@
 
 ## Setup
 ```bash
-python3.10 -m venv env
-source env/bin/activate
-pip install -e .[dev]
+go mod tidy
 ```
 
-## E2E (real backend in Docker)
+## Unit/smoke test
 ```bash
-pytest tests/e2e -v
+go test ./...
 ```
 
-## E2E env
+## Consumer import test
+```bash
+cd tests
+go test ./...
+```
+
+## E2E env (untuk tahap lanjut)
 - `MIRRABASE_BASE_URL` default `http://localhost:8000`
 - `MIRRABASE_PUBLIC_KEY` default `mirrabase-dev-public-key`
 - `MIRRABASE_SERVICE_KEY` default `mirrabase-dev-security-key`

@@ -1,33 +1,32 @@
 # Configuration
 
 ## Client config
-```python
-from mirrabase_sdk.client import MirrabaseClientConfig
-
-MirrabaseClientConfig(
-    base_url="http://localhost:8000",
-    api_key="...",        # optional
-    access_token="...",   # optional
-    project_id="...",     # optional
-    timeout=30.0,
-    headers={"x-custom": "1"},
-)
+```go
+cfg := mirrabase.ClientConfig{
+    BaseURL:     "http://localhost:8000",
+    APIKey:      "...", // optional
+    AccessToken: "...", // optional
+    ProjectID:   "...", // optional
+    Timeout:     30 * time.Second,
+    Headers:     map[string]string{"x-custom": "1"},
+}
+client := mirrabase.NewClient(cfg)
 ```
 
 ## Runtime updates
-```python
-mirrabase.set_api_key("mb_service_xxx")
-mirrabase.set_access_token("jwt-token")
-mirrabase.set_project_id("00000000-0000-0000-0000-000000000001")
+```go
+client.SetAPIKey("mb_service_xxx")
+client.SetAccessToken("jwt-token")
+client.SetProjectID("00000000-0000-0000-0000-000000000001")
 ```
 
 ## Header strategy
-- `Authorization` sent when `access_token` exists.
-- `x-mirrabase-key` sent when `api_key` exists.
-- If both exist, both are sent.
-- `x-project-id` sent when project is resolved from argument or client config.
+- `Authorization` dikirim saat `AccessToken` tersedia.
+- `x-mirrabase-key` dikirim saat `APIKey` tersedia.
+- Jika keduanya ada, keduanya dikirim.
+- `x-project-id` dikirim saat project context tersedia.
 
 ## Project ID resolution order
-1. Method argument `project_id`
-2. `client.project_id`
-3. Raise `ValueError("Project ID required")` for services that require project context.
+1. Argumen method `projectID`
+2. `ClientConfig.ProjectID`
+3. Return error `project id required` untuk endpoint yang wajib project context.

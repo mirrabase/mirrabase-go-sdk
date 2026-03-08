@@ -1,11 +1,11 @@
 # Members Service
 
-Namespace: `mirrabase.members`
+Namespace: `client.Members`
 
 ## Methods
-- `list(project_id: str | None = None)`
-- `update_role(user_id: str, role: str, project_id: str | None = None)`
-- `remove(user_id: str, project_id: str | None = None)`
+- `List(projectID string)`
+- `UpdateRole(userID, role, projectID string)`
+- `Remove(userID, projectID string)`
 
 ## Endpoints
 - `GET /v1/projects/:project_id/members`
@@ -13,8 +13,8 @@ Namespace: `mirrabase.members`
 - `DELETE /v1/projects/:project_id/members/:user_id`
 
 ## Example
-```python
-mirrabase.members.list()
-mirrabase.members.update_role(user_id, "admin")
-mirrabase.members.remove(user_id)
+```go
+_, _ = client.Members.List("")
+_, _ = client.Members.UpdateRole(userID, "admin", "")
+_ = client.Members.Remove(userID, "")
 ```

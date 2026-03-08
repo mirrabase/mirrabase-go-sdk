@@ -1,13 +1,13 @@
 # RAG Service
 
-Namespace: `mirrabase.rag`
+Namespace: `client.RAG`
 
 ## Methods
-- `list_collections(project_id: str | None = None)`
-- `create_collection(name: str, project_id: str | None = None)`
-- `delete_collection(collection_id: str, project_id: str | None = None)`
-- `query(payload: dict, project_id: str | None = None)`
-- `inference(collection: str, query: str, project_id: str | None = None)`
+- `ListCollections(projectID string)`
+- `CreateCollection(name, projectID string)`
+- `DeleteCollection(collectionID, projectID string)`
+- `Query(payload map[string]any, projectID string)`
+- `Inference(collection, query, projectID string)`
 
 ## Endpoints
 - `GET /v1/rag/collections`
@@ -17,7 +17,8 @@ Namespace: `mirrabase.rag`
 - `POST /v1/client/rag/inference/:collection`
 
 ## Example
-```python
-mirrabase.rag.create_collection("knowledge")
-result = mirrabase.rag.inference("knowledge", "what is mirrabase?")
+```go
+_, _ = client.RAG.CreateCollection("knowledge", "")
+result, _ := client.RAG.Inference("knowledge", "what is mirrabase?", "")
+_ = result
 ```

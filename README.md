@@ -1,35 +1,44 @@
-# `mirrabase-sdk`
-Official Python SDK for Mirrabase Core.
+# mirrabase-go-sdk
+
+Official Go SDK for Mirrabase Core.
 
 ## Install
 ```bash
-pip install mirrabase-sdk
+go get github.com/mirrabase/mirrabase-go-sdk@latest
 ```
 
-## Local setup (venv)
+## Local setup
 ```bash
-python3.10 -m venv env
-source env/bin/activate
-pip install -e .[dev]
+go mod tidy
+go test ./...
 ```
 
 ## Quick Start
-```python
-from mirrabase_sdk import MirrabaseClient, MirrabaseClientConfig
+```go
+package main
 
-mirrabase = MirrabaseClient(
-    MirrabaseClientConfig(
-        base_url="http://localhost:8000",
-        api_key="mirrabase-dev-public-key",
-    )
+import (
+	"fmt"
+	"log"
+	"time"
+
+	"github.com/mirrabase/mirrabase-go-sdk"
 )
 
-projects = mirrabase.projects.list()
-project = projects[0] if projects else mirrabase.projects.create({"name": "My Project"})
-mirrabase.set_project_id(project["id"])
+func main() {
+	client := mirrabase.NewClient(mirrabase.ClientConfig{
+		BaseURL: "http://localhost:8000",
+		APIKey:  "mirrabase-dev-public-key",
+		Timeout: 30 * time.Second,
+	})
 
-rows = mirrabase.db.from_table("todos").select()
-print(rows)
+	projects, err := client.Projects.List()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(projects)
+}
 ```
 
 ## Documentation Index

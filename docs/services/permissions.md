@@ -1,20 +1,18 @@
 # Permissions Service
 
-Namespace: `mirrabase.permissions`
+Namespace: `client.Permissions`
 
 ## Methods
-- `get(role: str, project_id: str | None = None)`
-- `update(role: str, permissions: list[dict], project_id: str | None = None)`
+- `Get(role, projectID string)`
+- `Update(role string, permissions []map[string]any, projectID string)`
 
 ## Endpoints
 - `GET /v1/projects/:project_id/roles/:role/permissions`
 - `PUT /v1/projects/:project_id/roles/:role/permissions`
 
 ## Example
-```python
-perms = mirrabase.permissions.get("developer")
-mirrabase.permissions.update(
-    "developer",
-    [{"service": "db", "can_read": True, "can_write": True}],
-)
+```go
+perms, _ := client.Permissions.Get("developer", "")
+_, _ = client.Permissions.Update("developer", []map[string]any{{"service": "db", "can_read": true}}, "")
+_ = perms
 ```

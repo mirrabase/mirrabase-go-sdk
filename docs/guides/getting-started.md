@@ -1,34 +1,31 @@
 # Getting Started
 
 ## 1. Create client
-```python
-from mirrabase_sdk import MirrabaseClient, MirrabaseClientConfig
-
-mirrabase = MirrabaseClient(
-    MirrabaseClientConfig(
-        base_url="http://localhost:8000",
-        api_key="mirrabase-dev-public-key",
-    )
-)
+```go
+client := mirrabase.NewClient(mirrabase.ClientConfig{
+    BaseURL: "http://localhost:8000",
+    APIKey:  "mirrabase-dev-public-key",
+})
 ```
 
 ## 2. Auth flow
-```python
-mirrabase.auth.signup({"email": email, "password": password})
-verify = mirrabase.auth.verify_email({"email": email, "token": token})
-mirrabase.auth.set_session(verify["session_token"])
+```go
+_, _ = client.Auth.Signup(map[string]any{"email": email, "password": password})
+verify, _ := client.Auth.VerifyEmail(map[string]any{"email": email, "token": token})
+_ = client.Auth.SetSession(verify["session_token"].(string))
 ```
 
 ## 3. Bootstrap project
-```python
-projects = mirrabase.projects.list()
-project = projects[0] if projects else mirrabase.projects.create({"name": "My Project"})
-mirrabase.projects.set_active(project["id"])
+```go
+projects, _ := client.Projects.List()
+if len(projects) > 0 {
+    client.SetProjectID(projects[0]["id"].(string))
+}
 ```
 
 ## 4. Use services
-```python
-mirrabase.db.from_table("todos").select()
-mirrabase.storage.list_buckets()
-mirrabase.rag.list_collections()
+```go
+_, _ = client.DB.FromTable("todos").Select("")
+_, _ = client.Storage.ListBuckets("")
+_, _ = client.RAG.ListCollections("")
 ```
