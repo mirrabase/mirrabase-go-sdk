@@ -5,16 +5,16 @@ import (
 	"time"
 
 	"github.com/mirrabase/mirrabase-go-sdk"
-	"github.com/mirrabase/mirrabase-go-sdk/apikeys"
-	"github.com/mirrabase/mirrabase-go-sdk/auth"
-	"github.com/mirrabase/mirrabase-go-sdk/database"
-	"github.com/mirrabase/mirrabase-go-sdk/invitations"
-	"github.com/mirrabase/mirrabase-go-sdk/members"
-	"github.com/mirrabase/mirrabase-go-sdk/permissions"
-	"github.com/mirrabase/mirrabase-go-sdk/projects"
-	"github.com/mirrabase/mirrabase-go-sdk/rag"
-	"github.com/mirrabase/mirrabase-go-sdk/settings"
-	"github.com/mirrabase/mirrabase-go-sdk/storage"
+	"github.com/mirrabase/mirrabase-go-sdk/pkg/apikeys"
+	"github.com/mirrabase/mirrabase-go-sdk/pkg/auth"
+	"github.com/mirrabase/mirrabase-go-sdk/pkg/database"
+	"github.com/mirrabase/mirrabase-go-sdk/pkg/invitations"
+	"github.com/mirrabase/mirrabase-go-sdk/pkg/members"
+	"github.com/mirrabase/mirrabase-go-sdk/pkg/permissions"
+	"github.com/mirrabase/mirrabase-go-sdk/pkg/projects"
+	"github.com/mirrabase/mirrabase-go-sdk/pkg/rag"
+	"github.com/mirrabase/mirrabase-go-sdk/pkg/settings"
+	"github.com/mirrabase/mirrabase-go-sdk/pkg/storage"
 )
 
 func TestImportsAndConstructors(t *testing.T) {
